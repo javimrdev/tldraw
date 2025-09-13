@@ -1,10 +1,8 @@
-import { TldrawPanel } from "./components/TldrawPanel";
+import { Home } from "@/scenes/Home/Home";
 
-const Home = () => {
+export default function () {
   return (<main className="h-full w-full">
-    <TldrawPanel />
+    <Home />
   </main>
   );
 }
-
-export default Home;
