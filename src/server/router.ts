@@ -1,7 +1,8 @@
-import { dbClient } from '@/lib/database';
+import { DatabaseClient } from '@/lib/database';
 import { TLEditorSnapshot } from 'tldraw';
-import z from 'zod';
 import { baseProcedure, createTRPCRouter } from './init';
+
+export const dbClient = new DatabaseClient();
 
 
 export const documentsRouter = createTRPCRouter({
@@ -15,8 +16,8 @@ export const documentsRouter = createTRPCRouter({
     getDocument: baseProcedure
         .query((opts) => {
         
-            dbClient.getDocument();
-        })
+        }),
+    getDocuments: baseProcedure.query(() => dbClient.getDocuments())
 })
 
 export type DocumentsRouter = typeof documentsRouter;

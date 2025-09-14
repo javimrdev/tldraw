@@ -6,7 +6,6 @@ export const useListener = () => {
     const editor = useEditor()
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
     const mutation = trpc.saveDocument.useMutation()
-    const query = trpc.getDocument.useQuery()
 
     useEffect(() => {
         const unsubscribe = editor.store.listen(() => {
