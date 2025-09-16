@@ -1,4 +1,5 @@
 import { Document, Session } from '@/logic/documents/types';
+import { revalidatePath } from 'next/cache';
 
 export class DatabaseClient {
   private readonly baseUrl: string;
@@ -40,6 +41,8 @@ export class DatabaseClient {
           method: 'POST',
           body: JSON.stringify(document),
         });
+        revalidatePath('/')
+
         if (!postRes.ok) throw new Error(`POST /documents ${postRes.status}`);
       } else {
         throw new Error(`GET /documents/${id} ${existingRes.status}`);
