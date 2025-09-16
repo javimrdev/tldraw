@@ -2,11 +2,15 @@
 
 import { TRPCProvider } from "@/app/_trpc/client";
 import { TldrawPanel } from "@/scenes/Document/components/TldrawPanel";
+import { ListenerInitializer } from "./components/ListenerInitializer/ListenerInitializer";
 
 export const Document = () => {
+
     return (
         <TRPCProvider>
-            <TldrawPanel />
+            <TldrawPanel>
+                <ListenerInitializer />
+            </TldrawPanel>
         </TRPCProvider>
     );
 

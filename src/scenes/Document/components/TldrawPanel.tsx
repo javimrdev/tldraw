@@ -1,16 +1,16 @@
 "use client";
 
 import { getAssetUrlsByMetaUrl } from "@tldraw/assets/urls";
+import { PropsWithChildren } from "react";
 import { Tldraw } from "tldraw";
 import "tldraw/tldraw.css";
-import { ListenerInitializer } from "./ListenerInitializer/ListenerInitializer";
 
-export const TldrawPanel = () => {
+export const TldrawPanel = ({ children }: PropsWithChildren) => {
     const assetUrls = getAssetUrlsByMetaUrl()
 
     return (
         <Tldraw assetUrls={assetUrls}>
-            <ListenerInitializer />
+            {children}
         </Tldraw>
     );
 };

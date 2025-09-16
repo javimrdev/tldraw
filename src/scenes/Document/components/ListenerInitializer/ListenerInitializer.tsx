@@ -1,7 +1,11 @@
 import { useListener } from "./useListener";
 
-export const ListenerInitializer = () => {
-    useListener();
+type Props = {
+    documentId?: string;
+}
+
+export const ListenerInitializer = ({ documentId }: Props) => {
+    useListener(documentId);
 
     return null;
 }
