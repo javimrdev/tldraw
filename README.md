@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tldraw
 
-## Getting Started
+Pizarra colaborativa online construida con Next.js, tldraw y TRPC.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Estructura básica del proyecto
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- `src/` — Código fuente principal
+- `db.json` — Mock de datos para desarrollo
+- `package.json` — Scripts y dependencias
+- `README.md` — Documentación
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Instalación y comandos principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Instala dependencias:
+   ```bash
+   pnpm install
+   ```
 
-## Learn More
+2. Levanta la app en modo desarrollo:
+   ```bash
+   pnpm dev
+   ```
+   - Next.js: http://localhost:3000
+   - json-server (mock): http://localhost:3001
 
-To learn more about Next.js, take a look at the following resources:
+3. Build y producción:
+   ```bash
+   pnpm build && pnpm start
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts útiles
+- `pnpm dev` — desarrollo (Next.js + json-server)
+- `pnpm build` — compila la app
+- `pnpm start` — inicia Next.js en producción
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Cosas a tener en cuenta
+- El mock de datos (`json-server`) se usa solo en desarrollo.
+- El proyecto usa App Router de Next.js.
+- El Error Boundary global está en `src/app/error.tsx`.
+- El toast de notificación está implementado con contexto y portal en `src/components/ui/shadcn-io/toast.tsx`.
+- Los estilos principales están en `src/app/globals.css` y se usa Tailwind.
+- Puedes personalizar la configuración en `next.config.ts` y `postcss.config.mjs`.
+- El usuario por defecto es `user_123` (puedes cambiarlo en el contexto TRPC).
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Flujos de la app y uso de TRPC
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Home
+- Al entrar en la página principal (`src/scenes/Home/Home.tsx`), se llama a `trpc.getDocuments()` para obtener la lista de documentos y mostrarlos en tarjetas.
+
+### Abrir un documento
+- Al navegar a `/document/[id]`, se renderiza `DocumentWithId` (`src/scenes/DocumentWithId/DocumentWithId.tsx`).
+- Dentro de `TldrawPanelWrapper`, se usa el hook `useHydrateDocumentWithId` para llamar a:
+  - `trpc.getDocument.useQuery({ id })` para obtener el documento.
+  - `trpc.getSession.useQuery({ documentId: id, userId })` para obtener la sesión del usuario.
+
+### Edición y guardado automático
+- En el editor (`TldrawPanel` y `ListenerInitializer`), cada vez que el usuario edita el documento:
+  - Se escucha el store del editor (`useListener`).
+  - Se llama a `trpc.saveDocument.useMutation()` para guardar el documento.
+  - Se llama a `trpc.saveSession.useMutation()` para guardar la sesión del usuario.
+
+### Estructura de los endpoints principales
+- `getDocuments`: Listar todos los documentos.
+- `getDocument`: Obtener un documento por ID.
+- `getSession`: Obtener la sesión de un usuario en un documento.
+- `saveDocument`: Guardar el estado de un documento.
+- `saveSession`: Guardar el estado de la sesión de usuario.
+
+### Notas
+- Todos los endpoints se consumen mediante hooks de React Query generados por TRPC.
+- El guardado es automático y reactivo: cada cambio en el editor dispara el guardado.
+
+---
