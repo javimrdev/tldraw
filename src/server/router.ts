@@ -18,20 +18,21 @@ export const documentsRouter = createTRPCRouter({
         .input((input: unknown) => input as Session)
         .mutation(async(opts)=> {
             await dbClient.saveSession(opts.input)
+            return { ok: true }
         }),
     getSession: baseProcedure
         .input(z.object({ documentId: z.string(), userId: z.string() }))
         .query(async (opts) => {
             const { userId, documentId } = opts.input;
-            return dbClient.getSession(documentId, userId);
+            return await dbClient.getSession(documentId, userId);
         }),
     getDocument: baseProcedure
         .input(z.object({id: z.string()}))
         .query(async (opts) => {
             revalidatePath('')
-            return dbClient.getDocument(opts.input.id)
+            return await dbClient.getDocument(opts.input.id)
     }),
-    getDocuments: baseProcedure.query(async () => dbClient.getDocuments())
+    getDocuments: baseProcedure.query(async () => await dbClient.getDocuments())
 })
 
 export type DocumentsRouter = typeof documentsRouter;
