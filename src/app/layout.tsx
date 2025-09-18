@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TRPCProvider } from "./_trpc/client";
+import { ToastProvider } from "./components/ToastProvider";
 
 export const metadata: Metadata = {
   title: "Create whiteboard",
@@ -15,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="h-screen w-screen">
+        <ToastProvider>
         <TRPCProvider>
           {children}
           </TRPCProvider>
+          </ToastProvider>
       </body>
     </html>
   );

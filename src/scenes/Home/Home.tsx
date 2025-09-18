@@ -5,5 +5,7 @@ import { DocumentsProvider } from "./DocumentsProvider"
 export const Home = async () => {
     const documents = await trpc.getDocuments()
 
-    return <DocumentsProvider documents={documents}><CardWrapper /></DocumentsProvider>
+    return <DocumentsProvider documents={documents}>
+        <CardWrapper />
+    </DocumentsProvider>
 }
