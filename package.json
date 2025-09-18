@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "concurrently \"next dev --turbopack\" \"json-server db.json -p 3001\"",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "lint": "biome lint .",
+    "format": "biome format . --write"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -33,6 +35,7 @@
     "zod": "^4.1.8"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
