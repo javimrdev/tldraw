@@ -2,7 +2,7 @@ import { Document, Session } from '@/logic/documents/types';
 import { revalidatePath } from 'next/cache';
 
 export class DatabaseClient {
-  private readonly baseUrl: string;
+  public readonly baseUrl: string;
 
   constructor(baseUrl: string = process.env.JSON_SERVER_URL || 'http://localhost:3001') {
     this.baseUrl = baseUrl.replace(/\/$/, '');
@@ -139,11 +139,9 @@ export class DatabaseClient {
 
   async deleteDocument(id: string): Promise<void> {
     try {
-      const res = await this.safeFetch(`${this.documentsUrl}/${encodeURIComponent(id)}`, {
+      await this.safeFetch(`${this.documentsUrl}/${encodeURIComponent(id)}`, {
         method: 'DELETE',
       });
-      if (!res.ok) 
-        throw new Error(`DELETE /documents/${id} ${res.status}`);
     } catch (error) {
       console.error(`Error al eliminar documento ${id}:`, error);
       throw error;
