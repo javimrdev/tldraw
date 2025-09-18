@@ -20,7 +20,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onDelete }) => {
 				documentId: id,
 				userId: "user_123",
 			});
-			onDelete && onDelete();
+			onDelete?.();
 			showToast("Documento eliminado", { type: "success" });
 		} catch (error) {
 			showToast("Error al eliminar el documento", { type: "error" });
@@ -29,9 +29,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onDelete }) => {
 
 	return (
 		<button
-			className="ml-2 flex items-center justify-center rounded bg-white text-black transition-colors px-2 py-1 group hover:bg-red-600"
+			className="ml-2 flex items-center justify-center rounded bg-white text-black transition-colors px-2 py-1 border border-white hover:border-red-600 cursor-pointer"
 			onClick={handleDelete}
 			aria-label="Eliminar documento"
+			type="button"
 		>
 			🗑️
 		</button>
