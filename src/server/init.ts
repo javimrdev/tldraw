@@ -3,11 +3,11 @@ import { cache } from "react";
 import superjson from "superjson";
 
 export const createTRPCContext = cache(async () => {
-    return { userId: 'user_123' };
-  });
-  
+	return { userId: "user_123" };
+});
+
 const t = initTRPC.create({
-  transformer: superjson,
+	transformer: superjson,
 });
 
 export const createTRPCRouter = t.router;
