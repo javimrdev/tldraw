@@ -5,11 +5,11 @@ import { TldrawPanel } from "@/components/TldrawPanel/TldrawPanel";
 import { ListenerInitializer } from "./components/ListenerInitializer/ListenerInitializer";
 
 export const Document = () => {
-	return (
-		<TRPCProvider>
-			<TldrawPanel>
-				<ListenerInitializer />
-			</TldrawPanel>
-		</TRPCProvider>
-	);
+  return (
+    <TRPCProvider>
+      <TldrawPanel>
+        <ListenerInitializer />
+      </TldrawPanel>
+    </TRPCProvider>
+  );
 };

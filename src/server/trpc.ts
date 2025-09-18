@@ -7,6 +7,7 @@ import { documentsRouter } from "./router";
 
 export const getQueryClient = cache(makeQueryClient);
 const caller = createCallerFactory(documentsRouter)(createTRPCContext);
-export const { trpc, HydrateClient } = createHydrationHelpers<
-	typeof documentsRouter
->(caller, getQueryClient);
+export const { trpc, HydrateClient } = createHydrationHelpers<typeof documentsRouter>(
+  caller,
+  getQueryClient,
+);

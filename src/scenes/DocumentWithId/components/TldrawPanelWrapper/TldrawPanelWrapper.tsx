@@ -7,20 +7,20 @@ import { SnapshotLoader } from "../SnapshotLoader/SnapshotLoader";
 import { useHydrateDocumentWithId } from "../SnapshotLoader/useHydrateDocumentWithId";
 
 export const TldrawPanelWrapper = ({ id }: { id: string }) => {
-	const { isLoading, hasError, snapshot } = useHydrateDocumentWithId(id);
+  const { isLoading, hasError, snapshot } = useHydrateDocumentWithId(id);
 
-	if (isLoading) {
-		return <Loading />;
-	}
+  if (isLoading) {
+    return <Loading />;
+  }
 
-	if (hasError) {
-		notFound();
-	}
+  if (hasError) {
+    notFound();
+  }
 
-	return (
-		<TldrawPanel>
-			<SnapshotLoader snapshot={snapshot as TLEditorSnapshot} />
-			<ListenerInitializer documentId={id} />
-		</TldrawPanel>
-	);
+  return (
+    <TldrawPanel>
+      <SnapshotLoader snapshot={snapshot as TLEditorSnapshot} />
+      <ListenerInitializer documentId={id} />
+    </TldrawPanel>
+  );
 };

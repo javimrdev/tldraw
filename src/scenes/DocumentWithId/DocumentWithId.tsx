@@ -10,13 +10,13 @@ import { useHydrateDocumentWithId } from "./components/SnapshotLoader/useHydrate
 import { TldrawPanelWrapper } from "./components/TldrawPanelWrapper/TldrawPanelWrapper";
 
 type Props = {
-	id: string;
+  id: string;
 };
 
 export const DocumentWithId = ({ id }: Props) => {
-	return (
-		<TRPCProvider>
-			<TldrawPanelWrapper id={id} />
-		</TRPCProvider>
-	);
+  return (
+    <TRPCProvider>
+      <TldrawPanelWrapper id={id} />
+    </TRPCProvider>
+  );
 };
