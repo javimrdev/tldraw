@@ -1,4 +1,4 @@
-import { TLEditorSnapshot } from "tldraw";
+import type { TLEditorSnapshot } from "tldraw";
 import { useSnapshotLoader } from "./useSnapshotLoader";
 
 export const SnapshotLoader = ({ snapshot }: { snapshot: TLEditorSnapshot }) => {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { loadSnapshot, TLEditorSnapshot, useEditor } from "tldraw";
+import { loadSnapshot, type TLEditorSnapshot, useEditor } from "tldraw";
 
 export const useSnapshotLoader = () => {
   const editor = useEditor();

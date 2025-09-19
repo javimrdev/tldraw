@@ -1,9 +1,9 @@
 "use client";
 
-import { AddBikeSticker } from "@/logic/tools/AddBikeSticker";
 import Link from "next/link";
-import { PropsWithChildren } from "react";
-import { TLComponents, Tldraw, TLUiAssetUrlOverrides, TLUiOverrides } from "tldraw";
+import type { PropsWithChildren } from "react";
+import { type TLComponents, type TLUiAssetUrlOverrides, type TLUiOverrides, Tldraw } from "tldraw";
+import { AddBikeSticker } from "@/logic/tools/AddBikeSticker";
 import "tldraw/tldraw.css";
 import { Button } from "../ui/button";
 import { CustomToolbar } from "./CustomToolbar";
@@ -45,7 +45,7 @@ export const TldrawPanel = ({ children }: PropsWithChildren) => {
       assetUrls={customAssetUrls}
       components={customComponents}
     >
-      <Button asChild color="black" className="absolute z-[999] top-13 left-3">
+      <Button asChild color="black" className="absolute top-13 left-3 z-[999]">
         <Link href="/">Go home</Link>
       </Button>
       {children}

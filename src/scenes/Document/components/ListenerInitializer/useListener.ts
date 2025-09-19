@@ -1,6 +1,6 @@
-import { trpc } from "@/app/_trpc/client";
 import { useEffect, useRef } from "react";
 import { useEditor } from "tldraw";
+import { trpc } from "@/app/_trpc/client";
 
 export const useListener = (documentId?: string) => {
   const editor = useEditor();
@@ -44,5 +44,5 @@ export const useListener = (documentId?: string) => {
       }
       unsubscribe();
     };
-  }, [editor]);
+  }, [documentId, editor.getSnapshot, editor.id, editor.store.listen, mutationSaveDocument.mutate, mutationSaveSession.mutate, utils.getDocument]);
 };

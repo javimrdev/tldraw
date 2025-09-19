@@ -29,7 +29,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({ id, onDelete }) => {
 
   return (
     <button
-      className="ml-2 flex items-center justify-center rounded bg-white text-black transition-colors px-2 py-1 border border-white hover:border-red-600 cursor-pointer"
+      className="ml-2 flex cursor-pointer items-center justify-center rounded border border-white bg-white px-2 py-1 text-black transition-colors hover:border-red-600"
       onClick={handleDelete}
       aria-label="Eliminar documento"
       type="button"

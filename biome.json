@@ -10,6 +10,9 @@
 			},
 			"nursery": {
 				"useSortedClasses": "warn"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "warn"
 			}
 		}
 	},

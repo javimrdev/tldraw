@@ -1,5 +1,5 @@
-import { Document, Session } from "@/logic/documents/types";
 import { revalidatePath } from "next/cache";
+import type { Document, Session } from "@/logic/documents/types";
 
 export class DatabaseClient {
   public readonly baseUrl: string;

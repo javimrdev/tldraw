@@ -1,4 +1,7 @@
 "use client";
+import Link from "next/link";
+import { useContext } from "react";
+import { trpc } from "@/app/_trpc/client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,11 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
 import { DeleteButton } from "./DeleteButton";
-import { trpc } from "@/app/_trpc/client";
 import { DocumentsContext } from "./DocumentsProvider";
-import { useContext } from "react";
 
 export const CardWrapper = () => {
   const { documents, deleteDocument } = useContext(DocumentsContext);
@@ -37,9 +37,7 @@ export const CardWrapper = () => {
             <CardDescription>Aquí tienes todos tus documentos disponibles</CardDescription>
           </>
         ) : (
-          <>
             <CardTitle>You have no documents yet, create a new one</CardTitle>
-          </>
         )}
       </CardHeader>
       <CardContent>
@@ -48,7 +46,7 @@ export const CardWrapper = () => {
             <div className="flex" key={id}>
               <Link
                 href={`/document/${id}`}
-                className="flex grow justify-between hover:bg-sky-500/50 px-5 py-2 rounded-sm "
+                className="flex grow justify-between rounded-sm px-5 py-2 hover:bg-sky-500/50"
               >
                 <span>{id}</span> →
               </Link>

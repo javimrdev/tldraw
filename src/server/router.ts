@@ -1,7 +1,7 @@
-import { DatabaseClient } from "@/lib/database";
-import { Document, Session } from "@/logic/documents/types";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { DatabaseClient } from "@/lib/database";
+import type { Document, Session } from "@/logic/documents/types";
 import { baseProcedure, createTRPCRouter } from "./init";
 
 export const dbClient = new DatabaseClient();

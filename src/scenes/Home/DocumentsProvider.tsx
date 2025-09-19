@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, PropsWithChildren, useContext, useMemo, useState } from "react";
-import { Document } from "@/logic/documents/types";
+import { createContext, type PropsWithChildren, useCallback, useMemo, useState } from "react";
+import type { Document } from "@/logic/documents/types";
 
 interface DocumentsContextType {
   documents: Document[];
@@ -20,16 +20,16 @@ export function DocumentsProvider({
 }: PropsWithChildren<DocumentsProviderProps>) {
   const [documents, setDocuments] = useState<Document[]>(initialDocuments);
 
-  const deleteDocument = (id: string) => {
-    setDocuments((docs) => docs.filter((doc) => doc.id !== id));
-  };
+  const deleteDocument = useCallback((id: string) =>
+  setDocuments((docs) => docs.filter((doc) => doc.id !== id))
+  ,[])
 
   const value = useMemo(
     () => ({
       documents,
       deleteDocument,
     }),
-    [documents],
+    [documents, deleteDocument],
   );
 
   return <DocumentsContext.Provider value={value}>{children}</DocumentsContext.Provider>;
